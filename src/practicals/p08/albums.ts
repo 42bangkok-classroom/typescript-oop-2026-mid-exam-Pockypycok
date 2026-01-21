@@ -1,6 +1,6 @@
 import axios from "axios";
 
-interface Posts{
+interface FullAlbum{
 
 userId: number;
 
@@ -12,7 +12,7 @@ body: string;
 
 }
 
-interface Comments {
+interface Posts {
 
 postId: number;
 
@@ -26,7 +26,7 @@ body: string;
 
 }
 
-interface reComments{
+interface UserSummary{
 
 postId: number;
 
@@ -36,7 +36,7 @@ totalComments: number;
 
 }
 
-export const mapPostWithCommentCount = async(): Promise<reComments[]> => {
+export const getPostsByUser = async(userId: number): Promise<UserSummary[]> =>{
 
 try{
 
@@ -44,17 +44,16 @@ const url1 = "https://jsonplaceholder.typicode.com/photos";
 
 const url2 = "https://jsonplaceholder.typicode.com/albums";
 
-const resPosts = await axios.get<photos[]>(url1);
+const resPhotos = await axios.get<photos[]>(url1);
 
-const resComments = await axios.get<albums[]>(url2);
+const resAlbums = await axios.get<albums[]>(url2);
 
-const posts = resPosts.data;
+const photos = resPhotos.data;
 
-const comments = resComments.data;
-
+const albums = resAlbums.data;
 const result = posts.map((post)=>{
 
-const count = comments.filter(comment => comment.postId === post.id).length;
+const count = comments.filter(posts => posts.postId === post.id).length;
 
 return{
 
