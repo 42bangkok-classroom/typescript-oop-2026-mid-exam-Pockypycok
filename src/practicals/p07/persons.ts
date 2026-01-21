@@ -16,3 +16,9 @@ const persons: Person[] = [
   { firstName: "Jane", lastName: "Smith", age: -5 },
   { lastName: "NoName", age: 40 }
 ];
+
+function sortPersonDatawithValidation(Persons: Person[]): { name: string; age: number }[] {
+  return [...Persons]
+    .sort((a, b) => a.age - b.age)
+    .map(s => ({ name: s.name, age: s.age }));
+}
