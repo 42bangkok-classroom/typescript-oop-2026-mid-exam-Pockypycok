@@ -9,6 +9,6 @@ console.log("B");
 console.log("C");
 } else if (score >= 50) {
 console.log("D");
-} else if (score <= 49) {
+} else {
 console.log("F");
 }
